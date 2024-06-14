@@ -2,7 +2,6 @@ package com.example.damas;
 
 public class Tabuleiro {
     private Peca[][] posicoes;
-    private Peca pecaSelecionada;
 
     public Tabuleiro() {
         this.posicoes = new Peca[8][8];

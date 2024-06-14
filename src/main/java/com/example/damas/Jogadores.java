@@ -1,23 +1,35 @@
 package com.example.damas;
 
 public class Jogadores {
-    private String nome;
-    private boolean vez;
+    private int pecasPretas;
+    private int pecasBrancas;
 
-    public Jogadores(String nome) {
-        this.nome = nome;
-        this.vez = false; // Inicialmente não é a vez do jogador
+    public Jogadores() {
+        this.pecasPretas = 12; // Total de peças pretas no início do jogo
+        this.pecasBrancas = 12; // Total de peças brancas no início do jogo
     }
 
-    public String getNome() {
-        return nome;
+    public int getPecasPretas() {
+        return pecasPretas;
     }
 
-    public boolean isVez() {
-        return vez;
+    public int getPecasBrancas() {
+        return pecasBrancas;
     }
 
-    public void setVez(boolean vez) {
-        this.vez = vez;
+    public void decrementarPecasPretas() {
+        this.pecasPretas--;
+    }
+
+    public void decrementarPecasBrancas() {
+        this.pecasBrancas--;
+    }
+
+    public void incrementarPecasPretas() {
+        this.pecasPretas++;
+    }
+
+    public void incrementarPecasBrancas() {
+        this.pecasBrancas++;
     }
 }

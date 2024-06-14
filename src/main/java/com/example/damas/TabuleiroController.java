@@ -101,12 +101,64 @@ public class TabuleiroController {
     }
 
     private void moverPeca(int toRow, int toCol) {
-        if (selectedPiece != null) {
+        if (selectedPiece != null && validarMovimento(selectedRow, selectedCol, toRow, toCol)) {
+            // Remover peça capturada, se houver
+            int middleRow = (selectedRow + toRow) / 2;
+            int middleCol = (selectedCol + toCol) / 2;
+
+            if (Math.abs(selectedRow - toRow) == 2 && Math.abs(selectedCol - toCol) == 2) {
+                Node pieceToRemove = getPieceAt(middleRow, middleCol);
+                if (pieceToRemove != null) {
+                    boardGrid.getChildren().remove(pieceToRemove);
+                    tabuleiro.setPeca(middleRow, middleCol, null); // Remove peça capturada do tabuleiro lógico
+                }
+            }
+
             GridPane.setColumnIndex(selectedPiece, toCol);
             GridPane.setRowIndex(selectedPiece, toRow);
             tabuleiro.moverPeca(selectedRow, selectedCol, toRow, toCol);
             selectedPiece.setStroke(Color.TRANSPARENT);
             selectedPiece = null;
         }
+    }
+
+    private boolean validarMovimento(int fromRow, int fromCol, int toRow, int toCol) {
+        // Verificar se a casa destino está vazia
+        if (tabuleiro.temPeca(toRow, toCol)) {
+            return false;
+        }
+
+        Peca peca = tabuleiro.getPeca(fromRow, fromCol);
+
+        // Verificar se o movimento é diagonal
+        if (Math.abs(fromRow - toRow) != Math.abs(fromCol - toCol)) {
+            return false;
+        }
+
+        // Verificar se a peça está se movendo apenas uma casa (ou duas no caso de captura)
+        int rowDiff = Math.abs(fromRow - toRow);
+        int colDiff = Math.abs(fromCol - toCol);
+
+        if (rowDiff == 1 && colDiff == 1) {
+            return true; // Movimento normal de uma casa
+        } else if (rowDiff == 2 && colDiff == 2) {
+            // Verificar se há uma peça adversária para capturar
+            int middleRow = (fromRow + toRow) / 2;
+            int middleCol = (fromCol + toCol) / 2;
+            Peca middlePeca = tabuleiro.getPeca(middleRow, middleCol);
+
+            return middlePeca != null && !middlePeca.getCor().equals(peca.getCor());
+        }
+
+        return false;
+    }
+
+    private Node getPieceAt(int row, int col) {
+        for (Node node : boardGrid.getChildren()) {
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col && node instanceof Circle) {
+                return node;
+            }
+        }
+        return null;
     }
 }
