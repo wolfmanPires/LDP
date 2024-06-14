@@ -8,4 +8,12 @@ public class Dama extends Peca {
     }
 
     // Métodos específicos para dama, se necessário
+
+    public void movimentoEspecial() {
+        // Lógica para movimento especial da dama
+    }
+
+    public void capturarPecaEspecial() {
+        // Lógica para captura especial de peça pela dama
+    }
 }
