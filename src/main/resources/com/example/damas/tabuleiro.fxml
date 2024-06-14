@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+    <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.damas.TabuleiroController">
+        <top>
+            <GridPane hgap="10" vgap="10">
+                <Label fx:id="opponentName" text="Nome do Oponente" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="opponentTime" text="Tempo Restante: 30s" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            </GridPane>
+        </top>
+        <center>
+            <GridPane fx:id="boardGrid" hgap="1" vgap="1">
+                <!-- Células do tabuleiro serão adicionadas dinamicamente pelo controlador -->
+            </GridPane>
+        </center>
+        <bottom>
+            <GridPane hgap="10" vgap="10">
+                <Label fx:id="playerName" text="Nome do Jogador" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="playerTime" text="Tempo Restante: 30s" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            </GridPane>
+        </bottom>
+    </BorderPane>
