@@ -26,7 +26,7 @@ public class TabuleiroController {
     private final int cellSize = 50;
 
     private Tabuleiro tabuleiro = new Tabuleiro();
-
+    private String turnoAtual = "branca"; // O turno começa com as peças brancas
     @FXML
     private void initialize() {
         desenharTabuleiro();
@@ -100,6 +100,7 @@ public class TabuleiroController {
         peca.setStrokeWidth(3);
     }
 
+
     private void moverPeca(int toRow, int toCol) {
         if (selectedPiece != null && validarMovimento(selectedRow, selectedCol, toRow, toCol)) {
             // Remover peça capturada, se houver
@@ -117,18 +118,32 @@ public class TabuleiroController {
             GridPane.setColumnIndex(selectedPiece, toCol);
             GridPane.setRowIndex(selectedPiece, toRow);
             tabuleiro.moverPeca(selectedRow, selectedCol, toRow, toCol);
+
+            // Verificar se a peça deve evoluir para dama
+            Peca pecaMovida = tabuleiro.getPeca(toRow, toCol);
+            if ((pecaMovida.getCor().equals("branca") && toRow == 0) || (pecaMovida.getCor().equals("preta") && toRow == 7)) {
+                tabuleiro.setPeca(toRow, toCol, new Dama(pecaMovida.getCor()));
+            }
+
             selectedPiece.setStroke(Color.TRANSPARENT);
             selectedPiece = null;
+
+            // Alternar o turno após o movimento
+            turnoAtual = turnoAtual.equals("branca") ? "preta" : "branca";
         }
     }
 
     private boolean validarMovimento(int fromRow, int fromCol, int toRow, int toCol) {
+        // Verificar se é o turno da cor correta
+        Peca peca = tabuleiro.getPeca(fromRow, fromCol);
+        if (!peca.getCor().equals(turnoAtual)) {
+            return false;
+        }
+
         // Verificar se a casa destino está vazia
         if (tabuleiro.temPeca(toRow, toCol)) {
             return false;
         }
-
-        Peca peca = tabuleiro.getPeca(fromRow, fromCol);
 
         // Verificar se o movimento é diagonal
         if (Math.abs(fromRow - toRow) != Math.abs(fromCol - toCol)) {
