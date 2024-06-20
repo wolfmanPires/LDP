@@ -1,7 +1,10 @@
 package com.example.damas;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -9,6 +12,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class TabuleiroController {
 
@@ -17,6 +21,12 @@ public class TabuleiroController {
 
     @FXML
     private GridPane boardGrid;
+
+    @FXML
+    private Label opponentTime;
+
+    @FXML
+    private Label playerTime;
 
     private Circle selectedPiece;
     private int selectedRow = -1;
@@ -27,10 +37,47 @@ public class TabuleiroController {
 
     private Tabuleiro tabuleiro = new Tabuleiro();
     private String turnoAtual = "branca"; // O turno começa com as peças brancas
+
+    private Timeline timer;
+    private int tempoRestante = 30;
+
     @FXML
     private void initialize() {
         desenharTabuleiro();
         adicionarPecas();
+        iniciarTimer();
+    }
+
+    private void iniciarTimer() {
+        if (timer != null) {
+            timer.stop();
+        }
+        tempoRestante = 30;
+        atualizarLabelTempo();
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            tempoRestante--;
+            atualizarLabelTempo();
+            if (tempoRestante <= 0) {
+                alternarTurno();
+            }
+        }));
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
+    }
+
+    private void atualizarLabelTempo() {
+        if (turnoAtual.equals("branca")) {
+            playerTime.setText("Tempo Restante: " + tempoRestante + "s");
+            opponentTime.setText("Tempo Restante: 30s");
+        } else {
+            opponentTime.setText("Tempo Restante: " + tempoRestante + "s");
+            playerTime.setText("Tempo Restante: 30s");
+        }
+    }
+
+    private void alternarTurno() {
+        turnoAtual = turnoAtual.equals("branca") ? "preta" : "branca";
+        iniciarTimer();
     }
 
     private void desenharTabuleiro() {
@@ -100,7 +147,6 @@ public class TabuleiroController {
         peca.setStrokeWidth(3);
     }
 
-
     private void moverPeca(int toRow, int toCol) {
         if (selectedPiece != null && validarMovimento(selectedRow, selectedCol, toRow, toCol)) {
             // Remover peça capturada, se houver
@@ -129,7 +175,7 @@ public class TabuleiroController {
             selectedPiece = null;
 
             // Alternar o turno após o movimento
-            turnoAtual = turnoAtual.equals("branca") ? "preta" : "branca";
+            alternarTurno();
         }
     }
 
@@ -154,15 +200,39 @@ public class TabuleiroController {
         int rowDiff = Math.abs(fromRow - toRow);
         int colDiff = Math.abs(fromCol - toCol);
 
-        if (rowDiff == 1 && colDiff == 1) {
-            return true; // Movimento normal de uma casa
-        } else if (rowDiff == 2 && colDiff == 2) {
-            // Verificar se há uma peça adversária para capturar
-            int middleRow = (fromRow + toRow) / 2;
-            int middleCol = (fromCol + toCol) / 2;
-            Peca middlePeca = tabuleiro.getPeca(middleRow, middleCol);
+        // Verificar se a peça está se movendo na direção correta (para frente)
+        if (peca instanceof Dama) {
+            // Dama pode se mover para qualquer direção
+            if (rowDiff == 1 && colDiff == 1) {
+                return true; // Movimento normal de uma casa
+            } else if (rowDiff == 2 && colDiff == 2) {
+                // Verificar se há uma peça adversária para capturar
+                int middleRow = (fromRow + toRow) / 2;
+                int middleCol = (fromCol + toCol) / 2;
+                Peca middlePeca = tabuleiro.getPeca(middleRow, middleCol);
 
-            return middlePeca != null && !middlePeca.getCor().equals(peca.getCor());
+                return middlePeca != null && !middlePeca.getCor().equals(peca.getCor());
+            }
+        } else {
+            // Peças normais só podem se mover para frente
+            if (peca.getCor().equals("branca") && toRow >= fromRow) {
+                return false;
+            }
+            if (peca.getCor().equals("preta") && toRow <= fromRow) {
+                return false;
+            }
+
+            if (rowDiff == 1 && colDiff == 1) {
+                return true; // Movimento normal de uma casa
+            } else if (rowDiff == 2 && colDiff == 2) {
+                // Verificar se há uma peça adversária para capturar
+                int middleRow = (fromRow + toRow) / 2;
+                int middleCol = (fromCol + toCol) / 2;
+                Peca middlePeca = tabuleiro.getPeca(middleRow, middleCol);
+
+
+                return middlePeca != null && !middlePeca.getCor().equals(peca.getCor());
+            }
         }
 
         return false;
@@ -177,3 +247,4 @@ public class TabuleiroController {
         return null;
     }
 }
+
