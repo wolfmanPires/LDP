@@ -89,10 +89,9 @@ public class TabuleiroController {
                 square.setOnMouseClicked(event -> moverPeca(GridPane.getRowIndex(square), GridPane.getColumnIndex(square)));
             }
         }
-        centralizarTabuleiro();
     }
 
-    private void centralizarTabuleiro() {
+   /* private void centralizarTabuleiro() {
         BorderPane.setAlignment(boardGrid, javafx.geometry.Pos.CENTER);
         for (int i = 0; i < boardSize; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
@@ -103,7 +102,7 @@ public class TabuleiroController {
             rowConst.setPercentHeight(100.0 / boardSize);
             boardGrid.getRowConstraints().add(rowConst);
         }
-    }
+    }*/
 
     private void adicionarPecas() {
         adicionarPecasCor("preta", 0, 3);
@@ -146,6 +145,8 @@ public class TabuleiroController {
         peca.setStroke(Color.RED);
         peca.setStrokeWidth(3);
     }
+
+
 
     private void moverPeca(int toRow, int toCol) {
         if (selectedPiece != null && validarMovimento(selectedRow, selectedCol, toRow, toCol)) {
