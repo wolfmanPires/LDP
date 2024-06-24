@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.damas.MainMenuController">
-    <VBox alignment="CENTER" spacing="20.0">
-        <Button text="Entrar no Jogo" onAction="#handleEnterGame" prefWidth="300" prefHeight="50"/>
-        <Button text="Regras" onAction="#handleViewRules" prefWidth="300" prefHeight="50"/>
-        <Button text="Como Jogar" onAction="#handleHowToPlay" prefWidth="300" prefHeight="50"/>
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.damas.MainMenuController">
+    <VBox alignment="CENTER" prefHeight="115.0" prefWidth="216.0" spacing="20.0">
+        <Button onAction="#handleEnterGame" prefHeight="50" prefWidth="300" text="Entrar no Jogo" />
+        <Button onAction="#handleViewRules" prefHeight="50" prefWidth="300" text="Regras" />
+        <Button onAction="#handleHowToPlay" prefHeight="50" prefWidth="300" text="Como Jogar" />
     </VBox>
 </StackPane>
