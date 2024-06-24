@@ -196,6 +196,7 @@ public class TabuleiroController {
                     }
                     atualizarPecasLabels();
                 }
+
             }
 
             GridPane.setColumnIndex(selectedPiece, toCol);
