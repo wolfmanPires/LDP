@@ -92,10 +92,10 @@ public class GameMain extends Application{
         }
         else {
             if (next == WHITE) {
-                result.setText (blackName+" (Black) won");
+                result.setText (blackName+" (Pretas) ganhou!");
             }
             else {
-                result.setText (whiteName+" (White) won");
+                result.setText (whiteName+" (Brancas) ganhou!");
             }
         }
         dialog.setOnCloseRequest (event -> System.exit (1));

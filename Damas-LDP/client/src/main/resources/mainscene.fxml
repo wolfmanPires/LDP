@@ -15,12 +15,12 @@
 
 <VBox prefHeight="580.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="damas.client.GameController">
     <MenuBar VBox.vgrow="NEVER">
-        <Menu mnemonicParsing="false" text="Options">
-            <MenuItem mnemonicParsing="false" onAction="#surrender" text="Surrender" />
+        <Menu mnemonicParsing="false" text="Opções">
+            <MenuItem mnemonicParsing="false" onAction="#surrender" text="Desistir" />
             <!--<MenuItem mnemonicParsing="false" onAction="#offerdraw" text="Offer draw" />-->
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#help" text="Help" />
-            <MenuItem mnemonicParsing="false" onAction="#showHistory" text="Track record" />
+            <MenuItem mnemonicParsing="false" onAction="#help" text="Ajuda" />
+            <MenuItem mnemonicParsing="false" onAction="#showHistory" text="Histórico de jogo" />
         </Menu>
     </MenuBar>
     <StackPane fx:id="rootpane">
@@ -41,7 +41,7 @@
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    #help<RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -52,9 +52,9 @@
                     <Font size="20.0"/>
                 </font>
             </Text>
-            <Text fx:id="nameTitle" layoutX="340.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Name: "
+            <Text fx:id="nameTitle" layoutX="340.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O teu nome: "
                   wrappingWidth="84.13671875"/>
-            <Text fx:id="opponentTitle" layoutX="340.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent's Name: "
+            <Text fx:id="opponentTitle" layoutX="340.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Adversario: "
                   wrappingWidth="133.1367136090994"/>
             <Text fx:id="name" layoutX="430.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.00000178813934"/>
             <Text fx:id="opponentName" layoutX="470.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0"

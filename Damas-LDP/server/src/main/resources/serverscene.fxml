@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-    <Label alignment="CENTER" prefHeight="200.0" prefWidth="300.0" text="Server running 127.0.0.1:33333&#10;&#10;close the window to stop the server" textAlignment="CENTER" wrapText="true" />
+    <Label alignment="CENTER" prefHeight="200.0" prefWidth="300.0" text="Servidor 127.0.0.1:33333 ativo&#10;&#10;fechar a janela para parar o servidor" textAlignment="CENTER" wrapText="true" />
 </Pane>

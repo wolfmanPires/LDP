@@ -13,6 +13,6 @@
             <Font size="30.0"/>
         </font>
     </Text>
-    <Button layoutX="50.0" layoutY="125.0" mnemonicParsing="false" onAction="#rstrt" prefWidth="95.0" text="New game"/>
-    <Button layoutX="175.0" layoutY="125.0" mnemonicParsing="false" onAction="#quit" prefWidth="95.0" text="Quit game"/>
+    <Button layoutX="50.0" layoutY="125.0" mnemonicParsing="false" onAction="#rstrt" prefWidth="95.0" text="Novo jogo"/>
+    <Button layoutX="175.0" layoutY="125.0" mnemonicParsing="false" onAction="#quit" prefWidth="95.0" text="Fechar jogo"/>
 </Pane>

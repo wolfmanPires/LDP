@@ -6,12 +6,12 @@
 
 <AnchorPane prefHeight="230.0" prefWidth="379.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Text layoutX="50.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games played:" wrappingWidth="195.7294921875">
+        <Text layoutX="50.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jogos Feitos:" wrappingWidth="195.7294921875">
             <font>
                 <Font size="25.0" />
             </font>
         </Text>
-        <Text layoutX="50.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games won:" wrappingWidth="195.7294921875">
+        <Text layoutX="50.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jogos Ganhos:" wrappingWidth="195.7294921875">
             <font>
                 <Font size="25.0" />
             </font>
